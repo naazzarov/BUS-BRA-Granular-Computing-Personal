@@ -7,7 +7,7 @@ from zipfile import ZIP_STORED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parent
 MANUSCRIPT = ROOT / "manuscript"
-FILES = ("main.tex", "results.pdf")
+FILES = ("main.tex", "partitions.pdf", "results.pdf", "audit_tables.tex")
 
 
 def main() -> None:

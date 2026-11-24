@@ -14,7 +14,7 @@ Computer Science → Machine Learning (cs.LG)
 
 **Suggested Comments field**
 
-6 pages, 1 figure, 3 tables
+9 pages, 2 figures, 5 tables
 
 **Keywords for the manuscript or other venues**
 
@@ -33,10 +33,10 @@ Conclusion: The incremental benefit of absolute score disagreement was uncertain
 ## Before release
 
 - Have all four authors approve the paper, author order, contributions, and disclosure wording. Add affiliations and the correspondence address if the authors want them in the paper. Confirm applicable institutional, funding, and conflict-of-interest statements with the authors.
-- Decide the public code release or approved ancillary materials and add the resulting access link to the manuscript. The private research branch contains the reproducibility package. The handoff feature table, source archive, patient-level records, individual predictions and trained models stay in authorized storage.
+- The manuscript links to the [private GitHub research branch](https://github.com/naazzarov/BUS-BRA-Granular-Computing-Personal/tree/research/patient-deferral/research/patient_deferral). Confirm whether readers will receive access to the analysis code or an approved public code snapshot. Keep the handoff feature table, patient-level records, individual predictions, and fitted models in authorized storage.
 - Choose the arXiv distribution license with the authors and verify category eligibility in the submitting account. [arXiv licenses](https://info.arxiv.org/help/license/index.html) · [Endorsement](https://info.arxiv.org/help/endorsement.html)
 - Upload the TeX source ZIP and review arXiv's processed PDF, metadata, and references before submitting. [Submission overview](https://info.arxiv.org/help/submit/index.html) · [TeX instructions](https://info.arxiv.org/help/submit_tex.html)
 
-The local six-page PDF was compiled from the extracted upload archive. Source ZIP SHA-256 is `2c2d53e3b7c7127a7fd7c4f5be0a2e1ff0fdb38fa4f513586c45e6427c547692`. Verify the final page count after any updates. [arXiv metadata requirements](https://info.arxiv.org/help/prep.html)
+The local nine-page PDF was compiled from the extracted upload archive. Source ZIP SHA-256 is `cad4d24c1cc6a7ec3c3d9eb067045768c88bb23643deebf32f5ac26de37ec49b`. Verify the page count in the arXiv preview. [arXiv metadata requirements](https://info.arxiv.org/help/prep.html)
 
 The study is a new analysis of selective prediction. The earlier feature-selection submission has its own moderation decision and appeal process. [arXiv appeals](https://info.arxiv.org/help/moderation/appeals.html)
