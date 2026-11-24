@@ -1,0 +1,518 @@
+{
+  "data_sha256": "7f22dccf4be1f8920a0e9fbd46ae31ed814f1be138e55dc936b00b76d67324ef",
+  "official_archive_md5": "1f8b2be6476d58fc97bfb5e5a1ea9bab",
+  "device_metadata_sha256": "f218d0f10b0aeeb14ff4b2cfed8631b2f4a7cf608e564548b35bddd55f3aafb3",
+  "bootstrap_draws": 5000,
+  "nominal_calibration_coverage": 0.9,
+  "threshold_replay": {
+    "logistic": {
+      "folds": [
+        {
+          "fold": 1,
+          "calibration_pairs": 166,
+          "rules": {
+            "learned_margin": {
+              "n": 164,
+              "accepted": 156,
+              "n_malignant": 54,
+              "accepted_malignant": 51,
+              "accepted_errors": 10,
+              "accepted_false_negatives": 7,
+              "calibration_accepted": 150,
+              "augrc": 0.012064991076740035
+            },
+            "learned_margin_gap": {
+              "n": 164,
+              "accepted": 156,
+              "n_malignant": 54,
+              "accepted_malignant": 51,
+              "accepted_errors": 10,
+              "accepted_false_negatives": 7,
+              "calibration_accepted": 150,
+              "augrc": 0.013031677572873289
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "calibration_pairs": 156,
+          "rules": {
+            "learned_margin": {
+              "n": 172,
+              "accepted": 157,
+              "n_malignant": 56,
+              "accepted_malignant": 42,
+              "accepted_errors": 10,
+              "accepted_false_negatives": 6,
+              "calibration_accepted": 141,
+              "augrc": 0.022275554353704704
+            },
+            "learned_margin_gap": {
+              "n": 172,
+              "accepted": 156,
+              "n_malignant": 56,
+              "accepted_malignant": 41,
+              "accepted_errors": 10,
+              "accepted_false_negatives": 6,
+              "calibration_accepted": 141,
+              "augrc": 0.02247836668469443
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "calibration_pairs": 167,
+          "rules": {
+            "learned_margin": {
+              "n": 153,
+              "accepted": 136,
+              "n_malignant": 52,
+              "accepted_malignant": 41,
+              "accepted_errors": 11,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 151,
+              "augrc": 0.03426032722457174
+            },
+            "learned_margin_gap": {
+              "n": 153,
+              "accepted": 137,
+              "n_malignant": 52,
+              "accepted_malignant": 41,
+              "accepted_errors": 12,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 151,
+              "augrc": 0.03323508052458456
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "calibration_pairs": 165,
+          "rules": {
+            "learned_margin": {
+              "n": 151,
+              "accepted": 136,
+              "n_malignant": 50,
+              "accepted_malignant": 44,
+              "accepted_errors": 19,
+              "accepted_false_negatives": 13,
+              "calibration_accepted": 149,
+              "augrc": 0.05050217095741415
+            },
+            "learned_margin_gap": {
+              "n": 151,
+              "accepted": 137,
+              "n_malignant": 50,
+              "accepted_malignant": 44,
+              "accepted_errors": 19,
+              "accepted_false_negatives": 13,
+              "calibration_accepted": 149,
+              "augrc": 0.049975878250953905
+            }
+          }
+        },
+        {
+          "fold": 5,
+          "calibration_pairs": 171,
+          "rules": {
+            "learned_margin": {
+              "n": 171,
+              "accepted": 150,
+              "n_malignant": 53,
+              "accepted_malignant": 43,
+              "accepted_errors": 14,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 154,
+              "augrc": 0.029427858144386306
+            },
+            "learned_margin_gap": {
+              "n": 171,
+              "accepted": 148,
+              "n_malignant": 53,
+              "accepted_malignant": 43,
+              "accepted_errors": 14,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 154,
+              "augrc": 0.029427858144386306
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "learned_margin": {
+          "n": 811,
+          "accepted": 735,
+          "n_malignant": 265,
+          "accepted_malignant": 221,
+          "accepted_errors": 64,
+          "accepted_false_negatives": 46,
+          "coverage_gap_interval": [
+            0.06054360048264798,
+            0.1546480620320453
+          ]
+        },
+        "learned_margin_gap": {
+          "n": 811,
+          "accepted": 734,
+          "n_malignant": 265,
+          "accepted_malignant": 220,
+          "accepted_errors": 65,
+          "accepted_false_negatives": 46,
+          "coverage_gap_interval": [
+            0.06285899451254029,
+            0.15944220129311762
+          ]
+        }
+      }
+    },
+    "gradient_boosting": {
+      "folds": [
+        {
+          "fold": 1,
+          "calibration_pairs": 166,
+          "rules": {
+            "learned_margin": {
+              "n": 164,
+              "accepted": 151,
+              "n_malignant": 54,
+              "accepted_malignant": 46,
+              "accepted_errors": 9,
+              "accepted_false_negatives": 5,
+              "calibration_accepted": 150,
+              "augrc": 0.014909280190362879
+            },
+            "learned_margin_gap": {
+              "n": 164,
+              "accepted": 152,
+              "n_malignant": 54,
+              "accepted_malignant": 47,
+              "accepted_errors": 9,
+              "accepted_false_negatives": 5,
+              "calibration_accepted": 150,
+              "augrc": 0.015020820939916716
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "calibration_pairs": 156,
+          "rules": {
+            "learned_margin": {
+              "n": 172,
+              "accepted": 157,
+              "n_malignant": 56,
+              "accepted_malignant": 48,
+              "accepted_errors": 14,
+              "accepted_false_negatives": 11,
+              "calibration_accepted": 141,
+              "augrc": 0.026805029745808544
+            },
+            "learned_margin_gap": {
+              "n": 172,
+              "accepted": 163,
+              "n_malignant": 56,
+              "accepted_malignant": 49,
+              "accepted_errors": 14,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 141,
+              "augrc": 0.026399405083829097
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "calibration_pairs": 167,
+          "rules": {
+            "learned_margin": {
+              "n": 153,
+              "accepted": 138,
+              "n_malignant": 52,
+              "accepted_malignant": 44,
+              "accepted_errors": 11,
+              "accepted_false_negatives": 11,
+              "calibration_accepted": 151,
+              "augrc": 0.03393993763082575
+            },
+            "learned_margin_gap": {
+              "n": 153,
+              "accepted": 135,
+              "n_malignant": 52,
+              "accepted_malignant": 43,
+              "accepted_errors": 10,
+              "accepted_false_negatives": 10,
+              "calibration_accepted": 151,
+              "augrc": 0.03445256098081934
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "calibration_pairs": 165,
+          "rules": {
+            "learned_margin": {
+              "n": 151,
+              "accepted": 141,
+              "n_malignant": 50,
+              "accepted_malignant": 45,
+              "accepted_errors": 21,
+              "accepted_false_negatives": 14,
+              "calibration_accepted": 149,
+              "augrc": 0.046160256129117144
+            },
+            "learned_margin_gap": {
+              "n": 151,
+              "accepted": 139,
+              "n_malignant": 50,
+              "accepted_malignant": 44,
+              "accepted_errors": 20,
+              "accepted_false_negatives": 13,
+              "calibration_accepted": 149,
+              "augrc": 0.045809394324810314
+            }
+          }
+        },
+        {
+          "fold": 5,
+          "calibration_pairs": 171,
+          "rules": {
+            "learned_margin": {
+              "n": 171,
+              "accepted": 161,
+              "n_malignant": 53,
+              "accepted_malignant": 48,
+              "accepted_errors": 15,
+              "accepted_false_negatives": 12,
+              "calibration_accepted": 154,
+              "augrc": 0.032864813104886974
+            },
+            "learned_margin_gap": {
+              "n": 171,
+              "accepted": 158,
+              "n_malignant": 53,
+              "accepted_malignant": 46,
+              "accepted_errors": 16,
+              "accepted_false_negatives": 12,
+              "calibration_accepted": 154,
+              "augrc": 0.03307000444581239
+            }
+          }
+        }
+      ],
+      "pooled": {
+        "learned_margin": {
+          "n": 811,
+          "accepted": 748,
+          "n_malignant": 265,
+          "accepted_malignant": 231,
+          "accepted_errors": 70,
+          "accepted_false_negatives": 53,
+          "coverage_gap_interval": [
+            0.03218553360103528,
+            0.12266026283110536
+          ]
+        },
+        "learned_margin_gap": {
+          "n": 811,
+          "accepted": 747,
+          "n_malignant": 265,
+          "accepted_malignant": 229,
+          "accepted_errors": 69,
+          "accepted_false_negatives": 50,
+          "coverage_gap_interval": [
+            0.0416163158077439,
+            0.13127044804344593
+          ]
+        }
+      }
+    }
+  },
+  "held_out_device": {
+    "excluded_patients": 0,
+    "devices": [
+      {
+        "device": "GE Logiq 5 @10-12MHz",
+        "patients": 490,
+        "pairs": 319,
+        "paired_malignant": 103,
+        "transport_eligible": true,
+        "models": {
+          "logistic": {
+            "calibration_pairs": 126,
+            "rules": {
+              "learned_margin": {
+                "n": 319,
+                "accepted": 297,
+                "n_malignant": 103,
+                "accepted_malignant": 86,
+                "accepted_errors": 31,
+                "accepted_false_negatives": 29,
+                "calibration_accepted": 114,
+                "augrc": 0.03459576851642574
+              },
+              "learned_margin_gap": {
+                "n": 319,
+                "accepted": 306,
+                "n_malignant": 103,
+                "accepted_malignant": 95,
+                "accepted_errors": 34,
+                "accepted_false_negatives": 33,
+                "calibration_accepted": 114,
+                "augrc": 0.0342321714605792
+              }
+            }
+          },
+          "gradient_boosting": {
+            "calibration_pairs": 126,
+            "rules": {
+              "learned_margin": {
+                "n": 319,
+                "accepted": 304,
+                "n_malignant": 103,
+                "accepted_malignant": 101,
+                "accepted_errors": 23,
+                "accepted_false_negatives": 10,
+                "calibration_accepted": 114,
+                "augrc": 0.026557325497980563
+              },
+              "learned_margin_gap": {
+                "n": 319,
+                "accepted": 300,
+                "n_malignant": 103,
+                "accepted_malignant": 99,
+                "accepted_errors": 22,
+                "accepted_false_negatives": 9,
+                "calibration_accepted": 114,
+                "augrc": 0.0269995381334696
+              }
+            }
+          }
+        }
+      },
+      {
+        "device": "GE Logiq 7 @10-14MHz",
+        "patients": 488,
+        "pairs": 414,
+        "paired_malignant": 124,
+        "transport_eligible": true,
+        "models": {
+          "logistic": {
+            "calibration_pairs": 98,
+            "rules": {
+              "learned_margin": {
+                "n": 414,
+                "accepted": 386,
+                "n_malignant": 124,
+                "accepted_malignant": 109,
+                "accepted_errors": 68,
+                "accepted_false_negatives": 45,
+                "calibration_accepted": 89,
+                "augrc": 0.06559079558449439
+              },
+              "learned_margin_gap": {
+                "n": 414,
+                "accepted": 383,
+                "n_malignant": 124,
+                "accepted_malignant": 107,
+                "accepted_errors": 68,
+                "accepted_false_negatives": 45,
+                "calibration_accepted": 89,
+                "augrc": 0.06621508086536441
+              }
+            }
+          },
+          "gradient_boosting": {
+            "calibration_pairs": 98,
+            "rules": {
+              "learned_margin": {
+                "n": 414,
+                "accepted": 389,
+                "n_malignant": 124,
+                "accepted_malignant": 113,
+                "accepted_errors": 46,
+                "accepted_false_negatives": 29,
+                "calibration_accepted": 89,
+                "augrc": 0.04643632290135126
+              },
+              "learned_margin_gap": {
+                "n": 414,
+                "accepted": 391,
+                "n_malignant": 124,
+                "accepted_malignant": 114,
+                "accepted_errors": 46,
+                "accepted_false_negatives": 29,
+                "calibration_accepted": 89,
+                "augrc": 0.045882050923008705
+              }
+            }
+          }
+        }
+      },
+      {
+        "device": "Toshiba Aplio 300 @12-14 MHz",
+        "patients": 72,
+        "pairs": 67,
+        "paired_malignant": 33,
+        "transport_eligible": true,
+        "models": {
+          "logistic": {
+            "calibration_pairs": 184,
+            "rules": {
+              "learned_margin": {
+                "n": 67,
+                "accepted": 62,
+                "n_malignant": 33,
+                "accepted_malignant": 30,
+                "accepted_errors": 8,
+                "accepted_false_negatives": 7,
+                "calibration_accepted": 166,
+                "augrc": 0.04154600133660058
+              },
+              "learned_margin_gap": {
+                "n": 67,
+                "accepted": 63,
+                "n_malignant": 33,
+                "accepted_malignant": 31,
+                "accepted_errors": 9,
+                "accepted_false_negatives": 8,
+                "calibration_accepted": 166,
+                "augrc": 0.04199153486299844
+              }
+            }
+          },
+          "gradient_boosting": {
+            "calibration_pairs": 184,
+            "rules": {
+              "learned_margin": {
+                "n": 67,
+                "accepted": 62,
+                "n_malignant": 33,
+                "accepted_malignant": 28,
+                "accepted_errors": 10,
+                "accepted_false_negatives": 9,
+                "calibration_accepted": 166,
+                "augrc": 0.058587658721318776
+              },
+              "learned_margin_gap": {
+                "n": 67,
+                "accepted": 64,
+                "n_malignant": 33,
+                "accepted_malignant": 30,
+                "accepted_errors": 11,
+                "accepted_false_negatives": 10,
+                "calibration_accepted": 166,
+                "augrc": 0.05881042548451771
+              }
+            }
+          }
+        }
+      },
+      {
+        "device": "U-Systems @10-14MHz",
+        "patients": 14,
+        "pairs": 11,
+        "paired_malignant": 5,
+        "transport_eligible": false
+      }
+    ]
+  }
+}

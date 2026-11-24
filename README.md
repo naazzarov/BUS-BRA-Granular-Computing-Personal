@@ -1,5 +1,7 @@
 # BUS-BRA Granular Computing
 
+The [patient-level deferral study](research/patient_deferral/README.md) contains the preprint, arXiv source package, and experiments on image-score disagreement and diagnosis-specific coverage.
+
 Three support vector machine (SVM) pipelines for classifying benign and malignant breast ultrasound findings from precomputed BUS-BRA radiomic features. The comparison covers **1,875 images from 1,064 patients** across five patient-disjoint test folds.
 
 [Results](#results) · [Quickstart](#quickstart) · [Reproduce the experiments](#reproduce-the-experiments) · [Evaluation design](#evaluation-design)

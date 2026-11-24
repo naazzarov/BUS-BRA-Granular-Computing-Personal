@@ -1,0 +1,1106 @@
+{
+  "official_archive_md5": "1f8b2be6476d58fc97bfb5e5a1ea9bab",
+  "features": [
+    "intensity_mean",
+    "intensity_sd",
+    "intensity_p10",
+    "intensity_p25",
+    "intensity_p50",
+    "intensity_p75",
+    "intensity_p90",
+    "adjacent_difference",
+    "mask_width",
+    "mask_height",
+    "mask_area",
+    "mask_fill"
+  ],
+  "bootstrap_draws": 5000,
+  "logistic": {
+    "folds": [
+      {
+        "fold": 1,
+        "n": 164,
+        "n_malignant": 54,
+        "accuracy": 0.8780487804878049,
+        "auc": 0.9392255892255892,
+        "augrc": {
+          "mean_margin": 0.027215942891136227,
+          "worst_margin": 0.028740333135038668,
+          "learned_margin": 0.027215942891136227,
+          "learned_margin_gap": 0.028777513384889947
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 10.0,
+              "accepted_malignant": 34.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 12.0,
+              "accepted_malignant": 41.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 8.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 11.0,
+              "accepted_malignant": 35.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 47.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 11.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 10.0,
+              "accepted_malignant": 34.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 12.0,
+              "accepted_malignant": 41.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 8.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 10.0,
+              "accepted_malignant": 34.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 43.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 10.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 2,
+        "n": 172,
+        "n_malignant": 56,
+        "accuracy": 0.8604651162790697,
+        "auc": 0.9307266009852216,
+        "augrc": {
+          "mean_margin": 0.03285559762033532,
+          "worst_margin": 0.03593158464034613,
+          "learned_margin": 0.03285559762033532,
+          "learned_margin_gap": 0.030759870200108168
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 10.0,
+              "accepted_malignant": 36.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 16.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 15.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 12.0,
+              "accepted_malignant": 36.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 17.0,
+              "accepted_malignant": 47.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 15.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 10.0,
+              "accepted_malignant": 36.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 16.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 15.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 11.0,
+              "accepted_malignant": 36.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 16.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 15.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 3,
+        "n": 153,
+        "n_malignant": 52,
+        "accuracy": 0.8431372549019608,
+        "auc": 0.9068926123381569,
+        "augrc": {
+          "mean_margin": 0.04267589388696655,
+          "worst_margin": 0.04109530522448631,
+          "learned_margin": 0.04267589388696655,
+          "learned_margin_gap": 0.04126617967448417
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 30.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 41.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 14.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 34.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 17.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 13.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 30.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 41.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 14.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 12.0,
+              "accepted_malignant": 31.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 20.0,
+              "accepted_malignant": 42.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 15.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 4,
+        "n": 151,
+        "n_malignant": 50,
+        "accuracy": 0.794701986754967,
+        "auc": 0.8413861386138614,
+        "augrc": {
+          "mean_margin": 0.06716810666198851,
+          "worst_margin": 0.0627384763826148,
+          "learned_margin": 0.06716810666198851,
+          "learned_margin_gap": 0.0658523748958379
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 16.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 27.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 19.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 18.0,
+              "accepted_malignant": 41.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 14.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 24.0,
+              "accepted_malignant": 47.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 18.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 16.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 27.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 19.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 15.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 25.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 19.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 5,
+        "n": 171,
+        "n_malignant": 53,
+        "accuracy": 0.8596491228070176,
+        "auc": 0.9162136232811,
+        "augrc": {
+          "mean_margin": 0.03566909476420095,
+          "worst_margin": 0.03549810198009644,
+          "learned_margin": 0.03566909476420095,
+          "learned_margin_gap": 0.032386033309394345
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 14.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 20.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 11.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 35.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 8.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 20.0,
+              "accepted_malignant": 43.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 11.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 14.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 20.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 11.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 14.0,
+              "accepted_malignant": 36.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 17.0,
+              "accepted_malignant": 43.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 9.0
+            }
+          }
+        }
+      }
+    ],
+    "rules": {
+      "mean_margin": {
+        "augrc": 0.04111692716492551,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 68.0,
+            "accepted_malignant": 178.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 49.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 94.0,
+            "accepted_malignant": 215.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 67.0
+          }
+        }
+      },
+      "worst_margin": {
+        "augrc": 0.04080076027251648,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 67.0,
+            "accepted_malignant": 181.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 49.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 93.0,
+            "accepted_malignant": 228.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 68.0
+          }
+        }
+      },
+      "learned_margin": {
+        "augrc": 0.04111692716492551,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 68.0,
+            "accepted_malignant": 178.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 49.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 94.0,
+            "accepted_malignant": 215.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 67.0
+          }
+        }
+      },
+      "learned_margin_gap": {
+        "augrc": 0.0398083942929429,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 68.0,
+            "accepted_malignant": 175.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 48.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 93.0,
+            "accepted_malignant": 217.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 68.0
+          }
+        }
+      }
+    },
+    "mean_delta": -0.0013085328719826053,
+    "paired_percentile_interval": [
+      -0.0028179267105992814,
+      0.0001973145171938035
+    ],
+    "full_coverage": {
+      "1": {
+        "patients": 253,
+        "malignant": 77,
+        "accuracy": 0.8537549407114624,
+        "auc": 0.8724173553719008
+      },
+      "2": {
+        "patients": 811,
+        "malignant": 265,
+        "accuracy": 0.8483353884093712,
+        "auc": 0.9077821549519663
+      }
+    }
+  },
+  "gradient_boosting": {
+    "folds": [
+      {
+        "fold": 1,
+        "n": 164,
+        "n_malignant": 54,
+        "accuracy": 0.8719512195121951,
+        "auc": 0.9262626262626262,
+        "augrc": {
+          "mean_margin": 0.031882064247471746,
+          "worst_margin": 0.03578599048185604,
+          "learned_margin": 0.031882064247471746,
+          "learned_margin_gap": 0.03046921475312314
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 8.0,
+              "accepted_malignant": 37.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 6.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 16.0,
+              "accepted_malignant": 46.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 12.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 12.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 17.0,
+              "accepted_malignant": 47.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 12.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 8.0,
+              "accepted_malignant": 37.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 6.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 16.0,
+              "accepted_malignant": 46.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 12.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 164,
+              "accepted": 132,
+              "accepted_errors": 9.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 7.0
+            },
+            "0.9": {
+              "n_patients": 164,
+              "accepted": 148,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 54,
+              "accepted_false_negatives": 9.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 2,
+        "n": 172,
+        "n_malignant": 56,
+        "accuracy": 0.8546511627906976,
+        "auc": 0.9011699507389163,
+        "augrc": {
+          "mean_margin": 0.0429455110870741,
+          "worst_margin": 0.05024675500270417,
+          "learned_margin": 0.0429455110870741,
+          "learned_margin_gap": 0.04199905354245538
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 35.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 13.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 16.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 18.0,
+              "accepted_malignant": 39.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 16.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 48.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 18.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 35.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 13.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 16.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 172,
+              "accepted": 138,
+              "accepted_errors": 14.0,
+              "accepted_malignant": 33.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 12.0
+            },
+            "0.9": {
+              "n_patients": 172,
+              "accepted": 155,
+              "accepted_errors": 18.0,
+              "accepted_malignant": 46.0,
+              "n_malignant": 56,
+              "accepted_false_negatives": 15.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 3,
+        "n": 153,
+        "n_malignant": 52,
+        "accuracy": 0.8104575163398693,
+        "auc": 0.8901370906321401,
+        "augrc": {
+          "mean_margin": 0.051411850143107354,
+          "worst_margin": 0.057691486180528856,
+          "learned_margin": 0.051411850143107354,
+          "learned_margin_gap": 0.04850698449314366
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 31.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 16.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 33.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 12.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 22.0,
+              "accepted_malignant": 43.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 18.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 31.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 9.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 16.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 153,
+              "accepted": 123,
+              "accepted_errors": 13.0,
+              "accepted_malignant": 32.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 153,
+              "accepted": 138,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 40.0,
+              "n_malignant": 52,
+              "accepted_false_negatives": 14.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 4,
+        "n": 151,
+        "n_malignant": 50,
+        "accuracy": 0.814569536423841,
+        "auc": 0.8475247524752475,
+        "augrc": {
+          "mean_margin": 0.06591816148414543,
+          "worst_margin": 0.0673654664269111,
+          "learned_margin": 0.06591816148414543,
+          "learned_margin_gap": 0.06679531599491251
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 18.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 12.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 15.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 13.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 24.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 14.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 18.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 12.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 45.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 15.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 151,
+              "accepted": 121,
+              "accepted_errors": 19.0,
+              "accepted_malignant": 37.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 12.0
+            },
+            "0.9": {
+              "n_patients": 151,
+              "accepted": 136,
+              "accepted_errors": 22.0,
+              "accepted_malignant": 44.0,
+              "n_malignant": 50,
+              "accepted_false_negatives": 14.0
+            }
+          }
+        }
+      },
+      {
+        "fold": 5,
+        "n": 171,
+        "n_malignant": 53,
+        "accuracy": 0.8187134502923976,
+        "auc": 0.8824752158618484,
+        "augrc": {
+          "mean_margin": 0.04881843986183783,
+          "worst_margin": 0.058257241544406826,
+          "learned_margin": 0.04881843986183783,
+          "learned_margin_gap": 0.048100270168598885
+        },
+        "operating_points": {
+          "mean_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 8.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 49.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 14.0
+            }
+          },
+          "worst_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 21.0,
+              "accepted_malignant": 42.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 10.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 25.0,
+              "accepted_malignant": 49.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 13.0
+            }
+          },
+          "learned_margin": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 15.0,
+              "accepted_malignant": 38.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 8.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 49.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 14.0
+            }
+          },
+          "learned_margin_gap": {
+            "0.8": {
+              "n_patients": 171,
+              "accepted": 137,
+              "accepted_errors": 14.0,
+              "accepted_malignant": 39.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 8.0
+            },
+            "0.9": {
+              "n_patients": 171,
+              "accepted": 154,
+              "accepted_errors": 23.0,
+              "accepted_malignant": 51.0,
+              "n_malignant": 53,
+              "accepted_false_negatives": 15.0
+            }
+          }
+        }
+      }
+    ],
+    "rules": {
+      "mean_margin": {
+        "augrc": 0.04819520536472729,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 69.0,
+            "accepted_malignant": 179.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 48.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 102.0,
+            "accepted_malignant": 225.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 73.0
+          }
+        }
+      },
+      "worst_margin": {
+        "augrc": 0.053869387927281395,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 85.0,
+            "accepted_malignant": 192.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 60.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 111.0,
+            "accepted_malignant": 232.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 75.0
+          }
+        }
+      },
+      "learned_margin": {
+        "augrc": 0.04819520536472729,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 69.0,
+            "accepted_malignant": 179.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 48.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 102.0,
+            "accepted_malignant": 225.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 73.0
+          }
+        }
+      },
+      "learned_margin_gap": {
+        "augrc": 0.04717416779044671,
+        "operating_points": {
+          "0.8": {
+            "n_patients": 811,
+            "accepted": 651,
+            "accepted_errors": 69.0,
+            "accepted_malignant": 179.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 49.0
+          },
+          "0.9": {
+            "n_patients": 811,
+            "accepted": 731,
+            "accepted_errors": 95.0,
+            "accepted_malignant": 226.0,
+            "n_malignant": 265,
+            "accepted_false_negatives": 67.0
+          }
+        }
+      }
+    },
+    "mean_delta": -0.001021037574280577,
+    "paired_percentile_interval": [
+      -0.002151921265662129,
+      6.804453433478918e-05
+    ],
+    "full_coverage": {
+      "1": {
+        "patients": 253,
+        "malignant": 77,
+        "accuracy": 0.7944664031620553,
+        "auc": 0.8276269185360094
+      },
+      "2": {
+        "patients": 811,
+        "malignant": 265,
+        "accuracy": 0.8347718865598027,
+        "auc": 0.887621812150114
+      }
+    }
+  }
+}
