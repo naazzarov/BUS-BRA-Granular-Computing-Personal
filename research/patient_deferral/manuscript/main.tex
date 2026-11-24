@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,booktabs,graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{1em}
+\title{Does Image Disagreement Help Decide Which Breast Ultrasound Predictions to Defer?}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\textbf{Purpose.} We test whether disagreement between two breast ultrasound image scores helps rank patient-level errors after accounting for confidence in the average score.
+
+\textbf{Methods.} We use 1,875 image records from 1,064 BUS-BRA patient groups, including 811 two-image groups. Within each outer training fold, we fit error-ranking models on grouped inner out-of-fold predictions. Each model uses either confidence alone or confidence plus image disagreement.
+
+\textbf{Results.} With logistic regression, adding disagreement changes area under the generalized risk--coverage curve by $-0.011$ percentage points (paired patient-bootstrap 95\% interval $[-0.056,0.033]$). With histogram gradient boosting, the change is $-0.045$ points ($[-0.131,0.038]$). At nominal 90\% coverage, confidence-only ranking retains 82.6\% of malignant and 93.8\% of benign cases with logistic regression. The corresponding rates with gradient boosting are 81.1\% and 94.5\%.
+
+\textbf{Conclusion.} The observed incremental changes from disagreement were small and uncertain. The coverage difference by diagnosis illustrates why an overall coverage target should be accompanied by class-specific reporting.
+\end{abstract}
+
+\section{Introduction}
+A classifier that can defer a prediction trades off the number of cases it classifies against the errors it leaves among those cases \cite{geifman}. When several images belong to a patient, the spread between their model scores offers a candidate signal for deferral. A useful test is whether the spread improves error ranking after accounting for confidence in the patient-level decision. A second concern is whether an acceptable overall coverage rate can coexist with unequal coverage by diagnosis.
+
+We study these questions using prepared radiomic measurements from BUS-BRA \cite{busbra}. We hold the patient-level decisions fixed while comparing deferral rules, so differences in risk reflect which cases are retained. We quantify the incremental ranking effect and describe the kinds of cases deferred at fixed total coverage. The evaluation concerns decisions at the patient-group level under this protocol.
+
+\section{Related work}
+Wei et al.\ combined two ultrasound views to improve classification on a dual-view sonography cohort \cite{wei}. That approach studies the input to the classifier. Here we hold the patient decision rule fixed and study how to rank its errors given the scores from two images. Geifman and El-Yaniv formalized selective classification through the risk--coverage trade-off \cite{geifman}. Traub et al.\ proposed AUGRC to summarize retained errors over the coverage range \cite{traub}. Jones et al.\ showed that selective classification can affect groups unevenly \cite{jones}. We examine retention separately by disease label, which describes the composition of a retrospective review queue.
+
+\section{Materials and methods}
+\subsection{Data and training boundaries}
+BUS-BRA contains 1,875 anonymized images from 1,064 patients \cite{busbra}. We use a fixed derived table with 288 numeric radiomic features. The table has 253 groups with one image and 811 with two images. All records in a patient group share the same supplied diagnosis and outer fold. The two-image cohort contains 265 malignant and 546 benign groups. Patient and image keys and fold assignments are excluded from predictors. The primary analysis uses the 811 two-image groups because the disagreement score requires two images. All eligible patients contribute to image model training. Full-coverage metrics for single-image groups are reported descriptively.
+
+We retain the five predefined patient-disjoint outer folds. For each outer fold, a shuffled three-fold stratified group split within its training data produces an out-of-fold image probability for every outer-training image. The random seed for the inner split is 42 plus the outer fold number. A patient contributes total weight one to backbone fitting, divided equally over the patient's images. The primary backbone is L2-regularized logistic regression with $C=1$ and training-weighted standard scaling. A fixed histogram gradient boosting sensitivity analysis uses 150 iterations, at most 15 leaves per tree, L2 regularization 1, and seed 42. After fitting the deferral models on the inner predictions, we refit the backbone on all outer-training records and apply the resulting pipeline to the held-out fold.
+
+\subsection{Patient decision and deferral rules}
+For image scores $p_1$ and $p_2$, the patient score is $\bar p=(p_1+p_2)/2$. A score of at least 0.5 assigns a malignant prediction. The confidence margin is $m=|\bar p-0.5|$ and the disagreement is $d=|p_1-p_2|$. The two quantities obey
+\[
+d \le 2\min(\bar p,1-\bar p)=1-2m.
+\]
+Large absolute disagreement is therefore feasible only over a restricted range of average confidence.
+
+We use two standardized logistic error models with $C=1$, fitted to errors in the inner out-of-fold predictions of two-image training patients. One uses $m$ alone and the other uses $m$ and $d$. Each estimates the probability that the fixed patient decision is incorrect. Low estimated error risk ranks a patient earlier for acceptance. We also report two rules that require no second model. They rank by higher $m$ or by the higher minimum image margin $\min_j|p_j-0.5|$. All rules use the same underlying patient predictions within each backbone and outer fold.
+
+\subsection{Outcomes and uncertainty}
+Coverage is the fraction of test patients whose predictions are retained. Generalized risk is the fraction of all test patients whose predictions are both retained and incorrect \cite{traub}. The primary endpoint is area under the generalized risk--coverage curve (AUGRC), computed within each outer fold and averaged with equal fold weight. Lower values indicate fewer retained errors over coverage levels. We use average ranks for tied scores. At nominal 80\% and 90\% coverage, we report the pooled error rate among accepted patients and report diagnosis-specific coverage at 90\%. We round each fold's retained count up and average tie-boundary counts over a uniform tie break.
+
+The primary contrast is AUGRC for the confidence-plus-disagreement rule minus AUGRC for the confidence-only rule with the logistic backbone. We draw 5,000 paired bootstrap samples of patient groups within outer folds using seed 20261124. The 2.5th and 97.5th percentiles give a conditional interval for the fold-mean difference. The bootstrap holds the predictions and fitted models fixed \cite{rutter}. We recorded the evaluation plan before inspecting this study's outcomes. The plan was not publicly registered.
+
+\section{Results}
+At full coverage the logistic backbone achieves 88.4\% accuracy and pooled area under the ROC curve 0.930 on two-image groups. Gradient boosting achieves 88.0\% accuracy and pooled ROC area 0.926. In single-image groups the observed accuracy is 84.2\% for both backbones. The single- and two-image estimates describe different groups.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Mean AUGRC across the five outer folds, in percent. Lower values indicate fewer retained errors over coverage levels.}
+\label{tab:augrc}
+\begin{tabular}{lrr}
+\toprule
+Ranking rule & Logistic & Gradient boosting\\
+\midrule
+Pair-average margin & 2.995 & 3.056\\
+Minimum image margin & 3.141 & 3.390\\
+Learned confidence only & 2.995 & 3.056\\
+Learned confidence plus disagreement & 2.984 & 3.011\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Adding disagreement changes AUGRC by $-0.011$ percentage points for the logistic backbone and by $-0.045$ for gradient boosting. The paired intervals span zero in both cases (Figure~\ref{fig:results}). The logistic confidence-only and enriched rules each retain 67 errors among 731 accepted patients at nominal 90\% coverage. At nominal 80\% coverage they retain 43 and 42 errors among 651 accepted patients, respectively. The gradient boosting rules retain 65 and 64 errors among 731 accepted patients at nominal 90\% coverage.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{results.png}
+\caption{A. Difference in fold-mean AUGRC for confidence plus disagreement versus confidence alone, with conditional paired 95\% intervals. B. Coverage by diagnosis for the confidence-only rule. The rounded overall coverage is 90.1\% for both backbones.}
+\label{fig:results}
+\end{figure}
+
+With confidence-only ranking, logistic regression accepts 219 of 265 malignant groups (82.6\%) and 512 of 546 benign groups (93.8\%) at nominal 90\% coverage. Gradient boosting accepts 215 malignant groups (81.1\%) and 516 benign groups (94.5\%). These differences describe how deferred cases are distributed by diagnosis in this dataset.
+
+\section{Discussion}
+The incremental gains from disagreement are small for both backbones under the evaluated rules. Mean margin and disagreement share a geometric constraint, which makes comparisons against a confidence-only error model important. The observed intervals permit modest improvement or worsening within this protocol. Other aggregation rules and score transformations remain open questions.
+
+Diagnosis-specific retention reveals a separate issue. A rule that accepts roughly 90\% of all patients can accept a smaller fraction of malignant cases. In a workflow where deferred cases require human review, coverage by diagnosis helps characterize the review workload. This study measures errors and retention in a fixed dataset. It cannot estimate outcomes after human review or establish clinical benefit.
+
+The primary analysis uses two-image groups from one cohort with a fixed radiomic extraction and existing lesion annotations. Estimates for one- and two-image groups describe the observed cohorts. The conditional bootstrap holds the five fitted models fixed, so its intervals omit variation from refitting on overlapping training samples. Supplementary results for gradient boosting and fixed coverage are descriptive. An independent cohort with linked image records and comparable measurements would be needed to assess generalization.
+
+\section{Conclusion}
+In 811 BUS-BRA groups with two images, adding absolute score disagreement to pair-average confidence produced small changes in held-out error ranking for two classifiers. At roughly 90\% coverage, confidence-only ranking retained a lower proportion of malignant cases for both classifiers. Reporting class-specific coverage makes this selective-classification behavior visible.
+
+\section{Data, reproducibility and disclosure}
+The BUS-BRA source collection and its associated publication describe acquisition and release conditions \cite{busbra,zenodo}. This analysis uses a derived feature table from the team handoff. Replicating the exact run requires authorized access to that table. The reproducibility package contains a checksum-verifying runner, the analysis plan, tests, and aggregate results. It excludes image files, patient and image identifiers, individual scores, and fitted models. This is a secondary computational evaluation without new data collection. No independent institutional determination is asserted here.
+
+Generative AI was used to assist with implementation, testing, and manuscript drafting. The authors must review the code, numerical results, citations, and submission disclosures before release.
+
+\begin{thebibliography}{9}
+\bibitem{busbra}
+W. G\'omez-Flores, M. J. Gregorio-Calas, and W. Coelho de Albuquerque Pereira.
+BUS-BRA: A breast ultrasound dataset for assessing computer-aided diagnosis systems.
+\emph{Medical Physics}, 51(4), 3110--3123, 2024.
+\href{https://doi.org/10.1002/mp.16812}{doi:10.1002/mp.16812}.
+
+\bibitem{zenodo}
+W. G\'omez-Flores, M. J. Gregorio-Calas, and W. Coelho de Albuquerque Pereira.
+BUS-BRA: A breast ultrasound dataset for assessing computer-aided diagnosis systems.
+Zenodo, 2023. \href{https://doi.org/10.5281/zenodo.8231412}{doi:10.5281/zenodo.8231412}.
+
+\bibitem{geifman}
+Y. Geifman and R. El-Yaniv.
+Selective classification for deep neural networks.
+\emph{Advances in Neural Information Processing Systems}, 30, 2017.
+
+\bibitem{wei}
+T.-R. Wei, M. Hell, A. Vierra, R. Pang, Y. Kang, M. Patel, and Y. Yan.
+Breast cancer detection on dual-view sonography via data-centric deep learning.
+\emph{IEEE Open Journal of Engineering in Medicine and Biology}, 6, 100--106, 2025.
+\href{https://doi.org/10.1109/OJEMB.2024.3454958}{doi:10.1109/OJEMB.2024.3454958}.
+
+\bibitem{traub}
+J. Traub, T. J. Bungert, C. T. L\"uth, M. Baumgartner, K. H. Maier-Hein,
+L. Maier-Hein, and P. F. J\"ager.
+Overcoming common flaws in the evaluation of selective classification systems.
+\emph{Advances in Neural Information Processing Systems}, 37, 2024.
+\href{https://doi.org/10.52202/079017-0076}{doi:10.52202/079017-0076}.
+
+\bibitem{jones}
+E. Jones, S. Sagawa, P. W. Koh, A. Kumar, and P. Liang.
+Selective classification can magnify disparities across groups.
+\emph{International Conference on Learning Representations}, 2021.
+\href{https://arxiv.org/abs/2010.14134}{arXiv:2010.14134}.
+
+\bibitem{rutter}
+C. M. Rutter.
+Bootstrap estimation of diagnostic accuracy with patient-clustered data.
+\emph{Academic Radiology}, 7(6), 413--419, 2000.
+\href{https://doi.org/10.1016/S1076-6332(00)80381-5}{doi:10.1016/S1076-6332(00)80381-5}.
+\end{thebibliography}
+\end{document}
