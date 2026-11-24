@@ -5,6 +5,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 from matplotlib.ticker import PercentFormatter
 
 
@@ -68,6 +69,40 @@ def plot_retention(ax):
     ax.legend(loc="lower center", ncol=2, bbox_to_anchor=(.5, -.58), frameon=False, fontsize=8)
 
 
+def plot_partitions():
+    fig, ax = plt.subplots(figsize=(6.65, 2.4))
+    ax.set(xlim=(0, 1), ylim=(0, 1))
+    ax.set_axis_off()
+    rows = (
+        ("A. Five-fold ranking comparison", (
+            ("Outer training", "Cross-fit image scores\nFit error rankers"),
+            ("Outer training", "Refit the image model\non the entire partition"),
+            ("Outer test", "Rank held-out errors\nMeasure AUGRC"),
+        )),
+        ("B. Replay with a frozen cutoff", (
+            ("Development", "Cross-fit and fit rankers\nRefit the image model"),
+            ("Calibration", "Score paired patients\nSet the cutoff"),
+            ("Outer test", "Apply the fixed cutoff\nMeasure realized coverage"),
+        )),
+    )
+    for (title, steps), y in zip(rows, (.55, .05)):
+        ax.text(.014, y + .405, title, va="top", fontsize=9, fontweight="bold", color="#163148")
+        for i, (heading, detail) in enumerate(steps):
+            x = .012 + i * .338
+            box = FancyBboxPatch((x, y), .298, .286, boxstyle="round,pad=.008",
+                                 facecolor=("#edf3fa", "#f5f7f8", "#fcf3eb")[i],
+                                 edgecolor="#a8b4bf", linewidth=.7)
+            ax.add_patch(box)
+            ax.text(x + .149, y + .216, heading, ha="center", va="center", fontweight="bold")
+            ax.text(x + .149, y + .100, detail, ha="center", va="center", linespacing=1.15)
+            if i < 2:
+                ax.annotate("", xy=(x + .329, y + .14), xytext=(x + .305, y + .14),
+                            arrowprops={"arrowstyle": "->", "color": "#526473", "lw": .9})
+    fig.subplots_adjust(left=.015, right=.985, top=.99, bottom=.01)
+    fig.savefig(HERE / "manuscript/partitions.pdf", metadata={"CreationDate": None, "ModDate": None})
+    plt.close(fig)
+
+
 def main():
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8.5, "pdf.fonttype": 42,
                          "axes.spines.top": False, "axes.spines.right": False})
@@ -76,6 +111,8 @@ def main():
     plot_retention(axes[1])
     fig.subplots_adjust(left=.22, right=.98, top=.93, bottom=.18, hspace=1.03)
     fig.savefig(HERE / "manuscript/results.pdf", metadata={"CreationDate": None, "ModDate": None})
+    plt.close(fig)
+    plot_partitions()
 
 
 if __name__ == "__main__":

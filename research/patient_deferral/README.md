@@ -23,6 +23,7 @@ python evaluate_extension.py --dataset "$features" --official-archive "$archive"
   --output extension_results.json
 python evaluate_public.py --official-archive "$archive" --output public_results.json
 python plot_results.py
+python render_tables.py
 python build_submission.py
 ```
 
@@ -36,4 +37,4 @@ The third run reconstructs 12 descriptors from public images and lesion masks, s
 
 ## Build the manuscript
 
-The upload ZIP has two files at its root. `main.tex` includes the bibliography and `results.pdf` contains the vector figure. Rebuild the ZIP after changing either file, then unpack it in an empty directory and run `pdflatex main.tex` twice. Tectonic can also compile the source locally. Compare the arXiv-generated preview with the reviewed PDF before final submission. [arXiv TeX instructions](https://info.arxiv.org/help/submit_tex.html)
+The upload ZIP has four files at its root. `main.tex` includes the bibliography, `audit_tables.tex` contains the aggregate fold rows, and `partitions.pdf` and `results.pdf` are the vector figures. Rebuild the ZIP after changing the manuscript, tables, or figures. Unpack it in an empty directory and run `pdflatex main.tex` twice. Tectonic can also compile the source locally. Compare the arXiv-generated preview with the reviewed PDF before final submission. [arXiv TeX instructions](https://info.arxiv.org/help/submit_tex.html)
