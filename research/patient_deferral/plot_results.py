@@ -1,50 +1,82 @@
-from pathlib import Path
+"""Generate the manuscript figure from aggregate results only."""
 import json
+from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib.ticker import PercentFormatter
 
-here = Path(__file__).resolve().parent
-r = json.loads((here / "results.json").read_text())
-labels = ["Logistic", "Gradient boosting"]
-names = ["logistic", "gradient_boosting"]
 
-plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 9,
-                     "axes.spines.top": False, "axes.spines.right": False})
-fig, (ax, right) = plt.subplots(1, 2, figsize=(9.9, 2.7),
-                                     gridspec_kw={"width_ratios":[1, 1.1]})
-y = [1, 0]
-for i, name in enumerate(names):
-    d = r[name]
-    m = 100 * d["mean_delta"]
-    low, high = (100 * n for n in d["paired_percentile_interval"])
-    ax.errorbar(m, y[i], xerr=[[m-low], [high-m]], fmt="o", capsize=4,
-                markersize=5, color="#006d72", lw=1.7)
-ax.axvline(0, color="#64748b", linestyle="--", lw=1)
-ax.set_yticks(y, labels)
-ax.set_ylim(-.57, 1.57)
-ax.set_xticks([-.15, -.10, -.05, 0, .05], ["−0.15", "−0.10", "−0.05", "0", "0.05"])
-ax.set_xlabel("Difference in AUGRC (percentage points)")
-ax.set_title("A. Incremental value of disagreement", loc="left", fontweight="bold")
-ax.grid(axis="x", alpha=.22)
+HERE = Path(__file__).resolve().parent
+BACKBONES = ("logistic", "gradient_boosting")
+LABELS = ("Logistic", "Gradient boosting")
+COLORS = ("#215b9c", "#a04d13")
 
-for i, name in enumerate(names):
-    p = r[name]["rules"]["learned_margin"]["operating_points"]["0.9"]
-    rates = 100 * np.array([p["accepted_malignant"]/p["n_malignant"],
-        (p["accepted"]-p["accepted_malignant"])/(p["n_patients"]-p["n_malignant"])])
-    for j, value in enumerate(rates):
-        ypos = y[i] + (.15 if j == 0 else -.15)
-        right.barh(ypos, value, .22, color=["#376ab3","#08796d"][j],
-                   label=["Malignant", "Benign"][j] if i == 0 else None)
-        right.text(value-1.3, ypos, f"{value:.1f}", ha="right", va="center",
-                   color="white", fontsize=8, fontweight="bold")
-right.set_yticks(y, labels)
-right.set_ylim(-.57, 1.57)
-right.set_xlim(0, 100)
-right.set_xlabel("Accepted patients by diagnosis (%)")
-right.set_title("B. Retention at nominal 90% coverage", loc="left", fontweight="bold")
-right.legend(loc="lower left", bbox_to_anchor=(0, -.55), frameon=False, ncol=2)
-fig.subplots_adjust(left=.14, right=.98, top=.84, bottom=.27, wspace=.55)
-fig.savefig(here/"manuscript/results.png", dpi=240, facecolor="white", bbox_inches="tight")
+
+def read_aggregate(filename):
+    return json.loads((HERE / filename).read_text())
+
+
+def plot_ranking(ax):
+    for index, (filename, representation) in enumerate((
+        ("results.json", "288 radiomic features"), ("public_results.json", "12 public descriptors"),
+    )):
+        results = read_aggregate(filename)
+        for row, backbone in enumerate(BACKBONES):
+            estimate = results[backbone]
+            delta = 100 * estimate["mean_delta"]
+            low, high = [100 * value for value in estimate["paired_percentile_interval"]]
+            ax.errorbar(delta, 3.3 - index * 2.0 - row * .65,
+                        xerr=[[delta - low], [high - delta]], fmt="o", capsize=3,
+                        color=COLORS[row], lw=1.5, ms=4, label=LABELS[row] if index == 0 else None)
+        ax.text(-.30, 3.65 - index * 2.0, representation, va="bottom", fontsize=8.5)
+    ax.axvline(0, color="#606d79", linestyle="--", lw=1)
+    ax.set_xlim(-.31, .06)
+    ax.set_ylim(.35, 4.2)
+    ax.set_yticks([])
+    ax.spines["left"].set_visible(False)
+    ax.set_xticks([-.30, -.20, -.10, 0])
+    ax.set_xlabel("Change in AUGRC (percentage points)")
+    ax.set_title("A. Does disagreement improve error ranking?", loc="left", fontweight="bold")
+    ax.grid(axis="x", alpha=.2)
+    ax.legend(loc="lower center", ncol=2, bbox_to_anchor=(.5, -.58), frameon=False, fontsize=8)
+
+
+def plot_retention(ax):
+    results = read_aggregate("extension_results.json")["threshold_replay"]
+    for row, backbone in enumerate(BACKBONES):
+        result = results[backbone]["pooled"]["learned_margin"]
+        malignant = 100 * result["accepted_malignant"] / result["n_malignant"]
+        benign = 100 * (result["accepted"] - result["accepted_malignant"]) / (result["n"] - result["n_malignant"])
+        ax.plot([malignant, benign], [1 - row] * 2, color="#b2bac3", lw=2)
+        for color, marker, value, label in zip(
+            COLORS, ("o", "s"), (malignant, benign), ("Malignant", "Benign"),
+        ):
+            ax.plot(value, 1 - row, marker=marker, color=color, ms=5, ls="none",
+                    label=label if row == 0 else None)
+            ax.text(value, 1.13 - row, f"{value:.1f}%", color=color, va="bottom", ha="center", fontsize=8)
+    ax.axvline(90, color="#606d79", linestyle="--", lw=1)
+    ax.set_yticks([1, 0], LABELS)
+    ax.set_xlim(79, 97)
+    ax.set_ylim(-.38, 1.52)
+    ax.set_xticks([80, 85, 90, 95])
+    ax.xaxis.set_major_formatter(PercentFormatter(decimals=0))
+    ax.set_xlabel("Retained patients in each diagnosis group")
+    ax.set_title("B. Who is retained at the frozen cutoff?", loc="left", fontweight="bold")
+    ax.grid(axis="x", alpha=.2)
+    ax.legend(loc="lower center", ncol=2, bbox_to_anchor=(.5, -.58), frameon=False, fontsize=8)
+
+
+def main():
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8.5, "pdf.fonttype": 42,
+                         "axes.spines.top": False, "axes.spines.right": False})
+    fig, axes = plt.subplots(2, 1, figsize=(6.5, 5.0))
+    plot_ranking(axes[0])
+    plot_retention(axes[1])
+    fig.subplots_adjust(left=.22, right=.98, top=.93, bottom=.18, hspace=1.03)
+    fig.savefig(HERE / "manuscript/results.pdf", metadata={"CreationDate": None, "ModDate": None})
+
+
+if __name__ == "__main__":
+    main()

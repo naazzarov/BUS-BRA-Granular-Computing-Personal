@@ -1,29 +1,39 @@
 # Patient-level deferral in breast ultrasound
 
-This study tests whether disagreement between two images helps rank patient-level prediction errors beyond confidence in the average image score. The analysis uses the frozen BUS-BRA feature table and saves aggregate results.
+Does disagreement between two image scores improve patient-level error ranking beyond confidence in their average? This secondary BUS-BRA study evaluates that question with logistic regression and histogram gradient boosting on patient-disjoint folds. It also measures whom a frozen cutoff retains and how it transfers to held-out acquisition devices.
 
-## Reproduce the run
+The primary logistic estimate for adding disagreement was −0.011 percentage points in area under the generalized risk–coverage curve (conditional 95% interval −0.056 to 0.033). The confidence-only logistic cutoff retained 90.6% of held-out patients overall, including 83.4% of malignant and 94.1% of benign cases. The same public cohort underlies all of the analyses.
 
-Use Python 3.11.15. Install the pinned packages in a virtual environment. Run from the directory that contains this README.
+[Manuscript source](manuscript/main.tex) · [arXiv source ZIP](submission/arxiv-source.zip) · [Submission metadata and preflight](submission/metadata.md)
 
-~~~bash
+## Reproduce the analyses
+
+Run from the directory containing this README in a Python 3.11 environment. The results were generated with Python 3.11.15. Set the two placeholder paths to local inputs. The first two runs use the exact, authorized derived CSV from the team handoff. All three runners write aggregate JSON and check the input version before fitting. Download `BUSBRA.zip` from the [official BUS-BRA release](https://zenodo.org/records/8231412) and cite the [dataset paper](https://doi.org/10.1002/mp.16812) when reusing it.
+
+```bash
 python -m pip install -r requirements.txt
 python -m pytest -q
-OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
-  python evaluate.py --dataset /path/to/BUSBRA_features_ready.csv --output results.json
+
+features=/path/to/BUSBRA_features_ready.csv
+archive=/path/to/BUSBRA.zip
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+
+python evaluate.py --dataset "$features" --output results.json
+python evaluate_extension.py --dataset "$features" --official-archive "$archive" \
+  --output extension_results.json
+python evaluate_public.py --official-archive "$archive" --output public_results.json
 python plot_results.py
-~~~
+python build_submission.py
+```
 
-The data path requires the exact, authorized derived BUS-BRA table from the team handoff. The runner verifies its SHA-256 before training. Dataset background is available in the [BUS-BRA paper](https://doi.org/10.1002/mp.16812) and [source record](https://doi.org/10.5281/zenodo.8231412).
+The third run reconstructs 12 descriptors from public images and lesion masks, so it requires only the official archive. The code computes descriptors and patient-linked predictions in memory. The three result files contain fold-, device-, or cohort-level summaries.
 
-[Analysis plan](protocol.md) · [Aggregate outcomes](results.json) · [Manuscript source](manuscript/main.tex)
+| Analysis | Plan | Aggregate output |
+| --- | --- | --- |
+| Main five-fold radiomic analysis | [Primary protocol](protocol.md) | [Primary results](results.json) |
+| Frozen cutoffs and held-out scanners | [Follow-up protocol](protocol_extension.md) | [Follow-up results](extension_results.json) |
+| Alternate descriptors from public images and masks | [Public-input protocol](protocol_extension.md#public-input-sensitivity-analysis) | [Public-input results](public_results.json) |
 
-## Before submitting to arXiv
+## Build the manuscript
 
-1. Review the analysis and manuscript with the contributing authors. Confirm names, affiliations, author order, data-use permissions and any required institutional wording.
-2. Preserve the exact code snapshot and decide how readers can access it. Keep the derived table, identifiers, individual predictions and any private artifacts in authorized storage. Include only approved source code and aggregate results in a public release.
-3. Add the confirmed author information and public code link to the manuscript. Confirm the wording of the AI-assistance disclosure.
-4. Review the original moderation notice before choosing a category or submitting the new work. Check endorsement if required. [arXiv moderation](https://info.arxiv.org/help/moderation/index.html) · [Endorsement](https://info.arxiv.org/help/endorsement.html)
-5. Prepare an upload ZIP containing main.tex and results.png from the manuscript directory. The references are embedded in the TeX source. Verify arXiv renders the same content before final submission. [arXiv TeX instructions](https://info.arxiv.org/help/submit_tex.html)
-
-The local rerun reproduced the aggregate results byte for byte with the same environment. Four synthetic tests cover the risk calculation, ties at the coverage boundary, patient aggregation, and split overlap checks.
+The upload ZIP has two files at its root. `main.tex` includes the bibliography and `results.pdf` contains the vector figure. Rebuild the ZIP after changing either file, then unpack it in an empty directory and run `pdflatex main.tex` twice. Tectonic can also compile the source locally. Compare the arXiv-generated preview with the reviewed PDF before final submission. [arXiv TeX instructions](https://info.arxiv.org/help/submit_tex.html)
