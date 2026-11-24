@@ -1,11 +1,12 @@
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.85in]{geometry}
+\usepackage[hmargin=0.85in,vmargin=0.80in]{geometry}
 \usepackage{amsmath,booktabs,float,graphicx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{microtype}
 \setlength{\emergencystretch}{1em}
 \input{audit_tables}
+\newcommand{\studyrepo}{\href{https://github.com/naazzarov/BUS-BRA-Granular-Computing-Personal/tree/research/patient-deferral/research/patient_deferral}{\nolinkurl{naazzarov/BUS-BRA-Granular-Computing-Personal}}}
 \title{Does Image Disagreement Help Decide Which Breast Ultrasound Predictions to Defer?}
 \author{Bahodir Nazarov, Zineb Gharib, Fatima Zazoul, and Luo Chuan}
 \hypersetup{
@@ -24,6 +25,8 @@
 \textbf{Results.} Adding disagreement changed area under the generalized risk--coverage curve by $-0.011$ percentage points with logistic regression (paired patient-bootstrap 95\% interval $[-0.056,0.033]$) and by $-0.045$ points with gradient boosting ($[-0.131,0.038]$). With a confidence-only cutoff set to retain at least 90\% of separate calibration patients, the logistic model retained 90.6\% of test patients overall, including 83.4\% of malignant and 94.1\% of benign cases. The benign-minus-malignant coverage gap was 10.7 points (95\% interval $[6.1,15.5]$).
 
 \textbf{Conclusion.} The incremental benefit of absolute score disagreement was uncertain in this cohort. The frozen cutoff retained fewer malignant cases proportionally, supporting diagnosis-specific reporting alongside overall coverage.
+
+\textbf{Code.} Analysis code and aggregate results are maintained in the private GitHub repository \studyrepo.
 \end{abstract}
 
 \section{Introduction}
@@ -161,8 +164,7 @@ In 811 BUS-BRA patient groups with two images, we found uncertain incremental ga
 \section{Data and code availability}
 The source collection and its publication describe acquisition and release conditions \cite{busbra,zenodo}. This secondary computational study used previously released anonymized data. Exact replication of the radiomic analysis requires authorized access to the frozen derived feature table. The public-input sensitivity analysis can be reproduced from the official BUS-BRA archive with the alternative feature extractor and the same evaluation code.
 
-The study code is maintained on GitHub in
-\href{https://github.com/naazzarov/BUS-BRA-Granular-Computing-Personal/tree/research/patient-deferral/research/patient_deferral}{\nolinkurl{naazzarov/BUS-BRA-Granular-Computing-Personal}}.
+The study code is maintained on GitHub in \studyrepo.
 The repository contains the runners, input checksums, analysis plans, environment requirements, and aggregate outputs. Repository access is currently restricted. The fold-level appendix provides observed counts and estimates for readers evaluating the analysis from the preprint. This reporting follows the distinction between internal and external testing in the CLAIM guidance \cite{claim}.
 
 OpenAI Codex assisted implementation, testing, and manuscript preparation.
